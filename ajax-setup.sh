@@ -38,7 +38,7 @@ if ! grep -q "X05-AJAX" /etc/hosts; then
 fi
 
 echo -e "${GREEN}[1/6]${NC} Installing base dependencies..."
-sudo apt install -y curl wget git ufw
+sudo apt install -y curl wget git ufw gh
 
 # ── Phase 2: Docker ──────────────────────────────────
 echo -e "${GREEN}[2/6]${NC} Installing Docker (no UFW — Docker manages its own networking)..."
@@ -47,10 +47,10 @@ curl -fsSL https://get.docker.com | sh
 sudo usermod -aG docker $USER
 
 # ── Phase 3: Tailscale ───────────────────────────────
-echo -e "${GREEN}[3/6]${NC} Installing Tailscale..."
-curl -fsSL https://tailscale.com/install.sh | sh
-echo -e "${YELLOW}[ACTION]${NC} After reboot, run: sudo tailscale up"
-echo -e "${YELLOW}[ACTION]${NC} Then authenticate via browser link"
+#echo -e "${GREEN}[3/6]${NC} Installing Tailscale..."
+#curl -fsSL https://tailscale.com/install.sh | sh
+#echo -e "${YELLOW}[ACTION]${NC} After reboot, run: sudo tailscale up"
+#echo -e "${YELLOW}[ACTION]${NC} Then authenticate via browser link"
 
 # ── Phase 4: Data Directories ─────────────────────────
 echo -e "${GREEN}[4/6]${NC} Creating persistent data directories..."
