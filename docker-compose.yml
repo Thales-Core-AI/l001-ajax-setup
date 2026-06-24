@@ -5,7 +5,7 @@ services:
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /sdata/portainer/data:/data
+      - ./data:/data
     ports:
       - 2301:9000
       - 8000:8000
@@ -22,7 +22,7 @@ services:
       FTLCONF_webserver_api_password: ${PIHOLE_PASSWORD}
       FTLCONF_dns_listeningMode: 'ALL'
     volumes:
-      - '/sdata/pihole/etc-pihole:/etc/pihole'
+      - './etc-pihole:/etc/pihole'
     cap_add:
       - NET_ADMIN
       - SYS_TIME
@@ -35,5 +35,19 @@ services:
     ports:
       - 2303:3001
     volumes:
-      - /sdata/kuma/data:/app/data
+      - ./data:/app/data
     restart: unless-stopped
+    
+  tailscale:
+    container_name: X06-004-TAILSCALE
+    image: tailscale/tailscale:latest
+    restart: always
+    volumes:
+      - ./tun:/dev/net/tun
+      - ./lib:/var/lib
+    environment:
+      - TS_AUTH_KEY=${TS_KEY}
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_ROUTES=172.17.10.0/24
+    network_mode: host
+    privileged: true
