@@ -1,0 +1,39 @@
+services:
+  portainer:
+    container_name: X05-001-PORTAINER
+    image: portainer/portainer-ce:lts
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /sdata/portainer/data:/data
+    ports:
+      - 2301:9000
+      - 8000:8000
+
+  pihole:
+    container_name: X05-002-PIHOLE
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "2302:80/tcp"
+    environment:
+      TZ: 'America/Managua'
+      FTLCONF_webserver_api_password: ${PIHOLE_PASSWORD}
+      FTLCONF_dns_listeningMode: 'ALL'
+    volumes:
+      - '/sdata/pihole/etc-pihole:/etc/pihole'
+    cap_add:
+      - NET_ADMIN
+      - SYS_TIME
+      - SYS_NICE
+    restart: unless-stopped
+
+  uptime-kuma:
+    container_name: X05-004-KUMA
+    image: louislam/uptime-kuma:latest
+    ports:
+      - 2303:3001
+    volumes:
+      - /sdata/kuma/data:/app/data
+    restart: unless-stopped
