@@ -5,7 +5,7 @@ services:
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./data:/data
+      - ./portainer/data:/data
     ports:
       - 2301:9000
       - 8000:8000
@@ -22,7 +22,7 @@ services:
       FTLCONF_webserver_api_password: ${PIHOLE_PASSWORD}
       FTLCONF_dns_listeningMode: 'ALL'
     volumes:
-      - './etc-pihole:/etc/pihole'
+      - './pihole/etc-pihole:/etc/pihole'
     cap_add:
       - NET_ADMIN
       - SYS_TIME
@@ -35,5 +35,5 @@ services:
     ports:
       - 2303:3001
     volumes:
-      - ./data:/app/data
+      - ./kuma/data:/app/data
     restart: unless-stopped
