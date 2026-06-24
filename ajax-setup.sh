@@ -58,6 +58,9 @@ sudo mkdir -p /sdata/portainer/data
 sudo mkdir -p /sdata/pihole/etc-pihole
 sudo mkdir -p /sdata/kuma/data
 
+sudo chown -R euro:euro /sdata/
+sudo chmod -R 755 /sdata
+
 # ── Phase 5: Docker Compose ──────────────────────────
 echo -e "${GREEN}[5/6]${NC} Deploying Docker Compose stack..."
 
