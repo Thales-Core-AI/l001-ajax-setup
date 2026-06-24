@@ -8,7 +8,7 @@
 |---------|-----------|------|---------|
 | Portainer | `X05-001-PORTAINER` | 2301 | Docker management UI |
 | Pi-hole | `X05-002-PIHOLE` | 2302 (web), 53 (DNS) | Network-wide ad blocking |
-| Uptime Kuma | `X05-004-KUMA` | 2303 | Service uptime monitoring |
+| Uptime Kuma | `X05-003-KUMA` | 2303 | Service uptime monitoring |
 
 Plus **Nancy** — a Picoclaw remote sentinel agent (native systemd service) that monitors all devices on the local network.
 

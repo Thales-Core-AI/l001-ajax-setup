@@ -6,8 +6,8 @@
 # Services:
 #   X05-001-PORTAINER  :2301  Docker management
 #   X05-002-PIHOLE     :2302  DNS + web admin (:53 DNS)
-#   X05-004-KUMA       :2303  Uptime monitoring
-#   X05-003-NANCY      :18792 Picoclaw remote sentinel (native)
+#   X05-003-KUMA       :2303  Uptime monitoring
+#   X05-004-NANCY-CLAW      :18792 Picoclaw remote sentinel (native)
 #
 # Usage:
 #   chmod +x ajax-setup.sh
@@ -106,7 +106,7 @@ services:
     restart: unless-stopped
 
   uptime-kuma:
-    container_name: X05-004-KUMA
+    container_name: X05-003-KUMA
     image: louislam/uptime-kuma:latest
     ports:
       - 2303:3001

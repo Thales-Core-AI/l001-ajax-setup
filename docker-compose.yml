@@ -30,7 +30,7 @@ services:
     restart: unless-stopped
 
   uptime-kuma:
-    container_name: X05-004-KUMA
+    container_name: X05-003-KUMA
     image: louislam/uptime-kuma:latest
     ports:
       - 2303:3001
