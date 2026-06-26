@@ -25,13 +25,13 @@ services:
     ports:
       - 2302:3001
     volumes:
-      - ./kuma/data:/app/data
+      - /sdata/kuma/data:/app/data
     restart: unless-stopped
   
   tailscale:
     image: tailscale/tailscale:latest
     container_name: X05-003-TAILSCALE
-    hostname: tailscale
+    hostname: X05-AJAX
     environment:
       - TS_AUTHKEY=${TS_KEY}
       - TS_STATE_DIR=/var/lib/tailscale
