@@ -1,28 +1,18 @@
 services:
-  portainer:
-    container_name: X05-001-PORTAINER
-    image: portainer/portainer-ce:lts
-    restart: always
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./portainer/data:/data
-    ports:
-      - 2301:9000
-      - 8000:8000
 
   pihole:
-    container_name: X05-002-PIHOLE
+    container_name: X05-001-PIHOLE
     image: pihole/pihole:latest
     ports:
       - "53:53/tcp"
       - "53:53/udp"
-      - "2302:80/tcp"
+      - "2301:80/tcp"
     environment:
       TZ: 'America/Managua'
       FTLCONF_webserver_api_password: ${PIHOLE_PASSWORD}
       FTLCONF_dns_listeningMode: 'ALL'
     volumes:
-      - './pihole/etc-pihole:/etc/pihole'
+      - '/sdata/pihole/etc-pihole:/etc/pihole'
     cap_add:
       - NET_ADMIN
       - SYS_TIME
@@ -30,10 +20,24 @@ services:
     restart: unless-stopped
 
   uptime-kuma:
-    container_name: X05-003-KUMA
+    container_name: X05-002-KUMA
     image: louislam/uptime-kuma:latest
     ports:
-      - 2303:3001
+      - 2302:3001
     volumes:
       - ./kuma/data:/app/data
+    restart: unless-stopped
+  
+  tailscale:
+    image: tailscale/tailscale:latest
+    container_name: X05-003-TAILSCALE
+    hostname: tailscale
+    environment:
+      - TS_AUTHKEY=${TS_KEY}
+      - TS_STATE_DIR=/var/lib/tailscale
+    volumes:
+      - /sdata/tailscale-state:/var/lib/tailscale
+    cap_add:
+      - net_admin
+      - net_raw
     restart: unless-stopped
