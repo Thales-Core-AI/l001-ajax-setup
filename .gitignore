@@ -1,4 +1,1 @@
-# Old individual compose files (superseded by docker-compose.yml)
-nginx-compose.yaml
-pihole-compose.yaml
-portainer-compose.yaml
+.DS_Store

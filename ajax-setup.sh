@@ -60,6 +60,8 @@ sudo mkdir -p /sdata/kuma/data
 
 sudo chown -R euro:euro /sdata/
 sudo chmod -R 755 /sdata
+sudo chown -R euro:euro /github/
+sudo chmod -R 755 /github/
 
 # ── Phase 5: Docker Compose ──────────────────────────
 echo -e "${GREEN}[5/6]${NC} Deploying Docker Compose stack..."
